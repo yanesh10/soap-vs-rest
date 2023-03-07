@@ -1,0 +1,124 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service"
+           elementFormDefault="qualified">
+
+<!--    <xs:include schemaLocation="models.xsd"/>-->
+
+    <xs:complexType name="Base">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="version" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Detective">
+        <xs:complexContent>
+            <xs:extension base="tns:Base">
+                <xs:sequence>
+                    <xs:element name="firstName" type="xs:string"/>
+                    <xs:element name="lastName" type="xs:string"/>
+                    <xs:element name="rank" type="tns:Rank"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Case">
+        <xs:complexContent>
+            <xs:extension base="tns:Base">
+                <xs:sequence>
+                    <xs:element name="description" type="xs:string"/>
+                    <xs:element name="date" type="xs:date"/>
+                    <xs:element name="leadDetective" type="tns:Detective"/>
+                    <xs:element name="detectiveList" type="tns:Detective" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="status" type="tns:Status"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="Status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OPEN"/>
+            <xs:enumeration value="CLOSED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Rank">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OFFICER"/>
+            <xs:enumeration value="DETECTIVE"/>
+            <xs:enumeration value="SERGEANT"/>
+            <xs:enumeration value="LIEUTENANT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="getAllCasesRequest"/>
+
+    <xs:element name="getAllCasesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="case" type="tns:Case" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllDetectiveForCaseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="caseId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllDetectiveForCaseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="detectiveList" type="tns:Detective" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getLeadDetectiveRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="caseId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getLeadDetectiveResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="detective" type="tns:Detective"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCaseByStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="tns:Status"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCaseByStatusResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="caseList" type="tns:Case" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllDetectiveRequest"/>
+
+    <xs:element name="getAllDetectiveResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="detectiveList" type="tns:Detective" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

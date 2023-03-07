@@ -1,0 +1,53 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="Base">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="version" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Detective">
+        <xs:complexContent>
+            <xs:extension base="tns:Base">
+                <xs:sequence>
+                    <xs:element name="firstName" type="xs:string"/>
+                    <xs:element name="lastName" type="xs:string"/>
+                    <xs:element name="rank" type="tns:Rank"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Case">
+        <xs:complexContent>
+            <xs:extension base="tns:Base">
+                <xs:sequence>
+                    <xs:element name="description" type="xs:string"/>
+                    <xs:element name="date" type="xs:date"/>
+                    <xs:element name="detectiveList" type="tns:Detective" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="Status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OPEN"/>
+            <xs:enumeration value="CLOSED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Rank">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OFFICER"/>
+            <xs:enumeration value="DETECTIVE"/>
+            <xs:enumeration value="SERGEANT"/>
+            <xs:enumeration value="LIEUTENANT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

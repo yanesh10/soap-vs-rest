@@ -1,0 +1,83 @@
+package mu.yanesh.webservices.repositories;
+
+import mu.yanesh.webservices.models.Detective;
+import org.hibernate.NotYetImplementedFor6Exception;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+@Repository
+public class DetectiveRepo implements CrudRepository<Detective, Integer> {
+
+    List<Detective> detectiveList = List.of(MockData.detective1, MockData.detective2, MockData.detective3, MockData.detective4);
+
+    @Override
+    public <S extends Detective> S save(S entity) {
+        detectiveList.add(entity);
+        return entity;
+    }
+
+    @Override
+    public <S extends Detective> Iterable<S> saveAll(Iterable<S> entities) {
+        entities.forEach(e -> detectiveList.add(e));
+        return entities;
+    }
+
+    @Override
+    public Optional<Detective> findById(Integer integer) {
+        return detectiveList.stream().filter(d -> d.getId().equals(integer)).findFirst();
+    }
+
+    @Override
+    public boolean existsById(Integer integer) {
+        return detectiveList.stream().anyMatch(d -> d.getId().equals(integer));
+    }
+
+    @Override
+    public Iterable<Detective> findAll() {
+        return detectiveList;
+    }
+
+    @Override
+    public Iterable<Detective> findAllById(Iterable<Integer> integers) {
+        List<Detective> detectives = new ArrayList<>();
+        integers.forEach(id -> detectives.addAll(detectiveList.stream().filter(d -> d.getId().equals(id)).toList()));
+        return detectives;
+    }
+
+    @Override
+    public long count() {
+        return detectiveList.size();
+    }
+
+    @Override
+    public void deleteById(Integer integer) {
+        Optional<Detective> detective = findById(integer);
+        detective.ifPresent(value -> detectiveList.remove(value));
+    }
+
+    @Override
+    public void delete(Detective entity) {
+        Objects.requireNonNull(entity.getId());
+        deleteById(entity.getId());
+    }
+
+    @Override
+    public void deleteAllById(Iterable<? extends Integer> integers) {
+        throw new NotYetImplementedFor6Exception();
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends Detective> entities) {
+        throw new NotYetImplementedFor6Exception();
+    }
+
+    @Override
+    public void deleteAll() {
+        throw new NotYetImplementedFor6Exception();
+    }
+}
