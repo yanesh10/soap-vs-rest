@@ -30,6 +30,14 @@ public class ControllerSoap {
         return response;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCaseByIdRequest")
+    @ResponsePayload
+    public GetCaseByIdResponse getCaseById(@RequestPayload GetCaseByIdRequest request) {
+        GetCaseByIdResponse response = new GetCaseByIdResponse();
+        response.setCase(objectMapper.convertValue(caseService.getById(request.getCaseId()).orElse(null), Case.class));
+        return response;
+    }
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllDetectiveForCaseRequest")
     @ResponsePayload
     public GetAllDetectiveForCaseResponse getAllDetectiveForCase(@RequestPayload GetAllDetectiveForCaseRequest request) {
