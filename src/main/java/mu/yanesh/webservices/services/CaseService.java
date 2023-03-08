@@ -38,7 +38,7 @@ public class CaseService implements BaseService<Case> {
     }
 
     public Optional<Detective> getLeadDetective(int caseId){
-        Optional<Case> caseOptional = caseRepo.findById(caseId);
+        Optional<Case> caseOptional = getById(caseId);
         return caseOptional.map(Case::getLeadDetective);
     }
 

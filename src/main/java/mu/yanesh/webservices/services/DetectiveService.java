@@ -11,7 +11,7 @@ import java.util.stream.StreamSupport;
 
 @Service
 @AllArgsConstructor
-public class DetectiveService implements BaseService<Detective>{
+public class DetectiveService implements BaseService<Detective> {
 
     private final DetectiveRepo detectiveRepo;
 
