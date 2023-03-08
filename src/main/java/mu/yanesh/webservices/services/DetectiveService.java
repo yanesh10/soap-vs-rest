@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -19,7 +18,7 @@ public class DetectiveService implements BaseService<Detective>{
     @Override
     public List<Detective> getAll() {
         return StreamSupport.stream(detectiveRepo.findAll().spliterator(), false)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

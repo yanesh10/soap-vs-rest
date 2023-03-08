@@ -57,8 +57,8 @@ public class CaseRepo implements CrudRepository<Case, Integer> {
 
     @Override
     public void deleteById(Integer integer) {
-        Optional<Case> case_ = findById(integer);
-        case_.ifPresent(aCase -> caseList.remove(aCase));
+        Optional<Case> foundCase = findById(integer);
+        foundCase.ifPresent(aCase -> caseList.remove(aCase));
     }
 
     @Override

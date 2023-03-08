@@ -1,4 +1,4 @@
-package mu.yanesh.webservices.SoapVersusRest;
+package mu.yanesh.webservices.soapVersusRest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

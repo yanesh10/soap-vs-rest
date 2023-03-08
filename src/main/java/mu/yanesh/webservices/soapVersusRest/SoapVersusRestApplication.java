@@ -1,4 +1,4 @@
-package mu.yanesh.webservices.SoapVersusRest;
+package mu.yanesh.webservices.soapVersusRest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

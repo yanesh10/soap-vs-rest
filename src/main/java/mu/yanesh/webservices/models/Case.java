@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @SuperBuilder
-public class Case extends BaseClass {
+public final class Case extends BaseClass {
 
     private String description;
     private LocalDate date;

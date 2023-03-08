@@ -12,7 +12,7 @@ import java.util.List;
 @UtilityClass
 public class MockData {
 
-    public static Detective detective1 = Detective.builder()
+    public static final Detective detective1 = Detective.builder()
             .id(1)
             .version(1)
             .firstName("John")
@@ -20,7 +20,7 @@ public class MockData {
             .rank(Rank.SERGEANT)
             .build();
 
-    public static Detective detective2 = Detective.builder()
+    public static final Detective detective2 = Detective.builder()
             .id(2)
             .version(1)
             .firstName("Lionel")
@@ -28,7 +28,7 @@ public class MockData {
             .rank(Rank.DETECTIVE)
             .build();
 
-    public static Detective detective3 = Detective.builder()
+    public static final Detective detective3 = Detective.builder()
             .id(3)
             .version(1)
             .firstName("Crist")
@@ -36,7 +36,7 @@ public class MockData {
             .rank(Rank.LIEUTENANT)
             .build();
 
-    public static Detective detective4 = Detective.builder()
+    public static final Detective detective4 = Detective.builder()
             .id(4)
             .version(1)
             .firstName("David")
@@ -44,7 +44,7 @@ public class MockData {
             .rank(Rank.OFFICER)
             .build();
 
-    public static Case case1 = Case.builder()
+    public static final Case case1 = Case.builder()
             .id(1)
             .version(1)
             .date(LocalDate.of(2010, 1, 4))
@@ -54,7 +54,7 @@ public class MockData {
             .detectiveList(List.of(detective1, detective2))
             .build();
 
-    public static Case case2 = Case.builder()
+    public static final Case case2 = Case.builder()
             .id(2)
             .version(1)
             .date(LocalDate.of(1990, 1, 4))
@@ -64,7 +64,7 @@ public class MockData {
             .detectiveList(List.of(detective1, detective2))
             .build();
 
-    public static Case case3 = Case.builder()
+    public static final Case case3 = Case.builder()
             .id(3)
             .version(1)
             .date(LocalDate.of(2018, 1, 4))

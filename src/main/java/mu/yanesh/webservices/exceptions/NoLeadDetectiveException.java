@@ -1,4 +1,4 @@
-package mu.yanesh.webservices.Exceptions;
+package mu.yanesh.webservices.exceptions;
 
 public class NoLeadDetectiveException extends RuntimeException {
 }

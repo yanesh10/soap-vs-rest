@@ -3,7 +3,7 @@ package mu.yanesh.webservices.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.spring.guides.gs_producing_web_service.*;
 import lombok.AllArgsConstructor;
-import mu.yanesh.webservices.Exceptions.NoLeadDetectiveException;
+import mu.yanesh.webservices.exceptions.NoLeadDetectiveException;
 import mu.yanesh.webservices.services.CaseService;
 import mu.yanesh.webservices.services.DetectiveService;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -22,7 +21,7 @@ public class CaseService implements BaseService<Case> {
     @Override
     public List<Case> getAll() {
         return StreamSupport.stream(caseRepo.findAll().spliterator(), false)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -44,6 +43,8 @@ public class CaseService implements BaseService<Case> {
     }
 
     public List<Case> getAllCasesByStatus(Status status){
-        return getAll().stream().filter(c -> c.getStatus().equals(status)).collect(Collectors.toList());
+        return getAll().stream()
+                .filter(c -> c.getStatus().equals(status))
+                .toList();
     }
 }

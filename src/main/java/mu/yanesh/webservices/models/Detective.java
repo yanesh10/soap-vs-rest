@@ -5,7 +5,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class Detective extends BaseClass {
+public final class Detective extends BaseClass {
 
     private String firstName;
     private String lastName;

@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 @MappedSuperclass
 @Data
 @SuperBuilder
-public class BaseClass {
+public abstract sealed class BaseClass permits Case, Detective {
 
     private Integer id;
     private Integer version;
