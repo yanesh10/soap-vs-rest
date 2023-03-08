@@ -1,5 +1,6 @@
 package mu.yanesh.webservices.repositories;
 
+import lombok.experimental.UtilityClass;
 import mu.yanesh.webservices.models.Case;
 import mu.yanesh.webservices.models.Detective;
 import mu.yanesh.webservices.models.Rank;
@@ -8,6 +9,7 @@ import mu.yanesh.webservices.models.Status;
 import java.time.LocalDate;
 import java.util.List;
 
+@UtilityClass
 public class MockData {
 
     public static Detective detective1 = Detective.builder()
