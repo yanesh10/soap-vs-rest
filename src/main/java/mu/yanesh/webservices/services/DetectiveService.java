@@ -26,5 +26,14 @@ public class DetectiveService implements BaseService<Detective> {
         return detectiveRepo.findById(id);
     }
 
+    public Detective save(Detective detective) {
+        detective = detectiveRepo.save(detective);
+        return detective;
+    }
+
+    public void delete(Integer id) {
+        detectiveRepo.deleteById(id);
+    }
+
 
 }
