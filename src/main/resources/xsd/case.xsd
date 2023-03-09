@@ -7,7 +7,7 @@
 
     <xs:complexType name="Base">
         <xs:sequence>
-            <xs:element name="id" type="xs:string"/>
+            <xs:element name="id" type="xs:int"/>
             <xs:element name="version" type="xs:int"/>
         </xs:sequence>
     </xs:complexType>
@@ -135,6 +135,22 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="detectiveList" type="tns:Detective" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="detectiveServiceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="detective" type="tns:Detective"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="detectiveServiceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="detective" type="tns:Detective"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
