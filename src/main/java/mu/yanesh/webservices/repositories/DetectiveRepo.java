@@ -1,22 +1,42 @@
 package mu.yanesh.webservices.repositories;
 
+import mu.yanesh.webservices.models.BaseClass;
 import mu.yanesh.webservices.models.Detective;
 import org.hibernate.NotYetImplementedFor6Exception;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository
 public class DetectiveRepo implements CrudRepository<Detective, Integer> {
 
-    List<Detective> detectiveList = List.of(MockData.detective1, MockData.detective2, MockData.detective3, MockData.detective4);
+    List<Detective> detectiveList = Stream.of(MockData.detective1, MockData.detective2, MockData.detective3, MockData.detective4)
+            .collect(Collectors.toList());
+
+    private int generateId() {
+        int id = detectiveList.stream()
+                .map(BaseClass::getId)
+                .max(Comparator.comparing(Integer::intValue))
+                .orElse(1);
+        return ++id;
+    }
 
     @Override
     public <S extends Detective> S save(S entity) {
+        if (Objects.isNull(entity.getId())) {
+            entity.setId(generateId());
+            entity.setVersion(1);
+        }
+        if (existsById(entity.getId())) {
+            entity.setVersion(findById(entity.getId()).map(BaseClass::getVersion).orElse(0) + 1);
+        }
         detectiveList.add(entity);
         return entity;
     }

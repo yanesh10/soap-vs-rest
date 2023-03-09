@@ -1,10 +1,14 @@
 package mu.yanesh.webservices.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public final class Detective extends BaseClass {
 
     private String firstName;

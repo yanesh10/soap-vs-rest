@@ -1,22 +1,37 @@
 package mu.yanesh.webservices.repositories;
 
+import mu.yanesh.webservices.models.BaseClass;
 import mu.yanesh.webservices.models.Case;
 import org.hibernate.NotYetImplementedFor6Exception;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository
 public class CaseRepo implements CrudRepository<Case, Integer> {
 
-    List<Case> caseList = List.of(MockData.case1, MockData.case2, MockData.case3);
+    List<Case> caseList = Stream.of(MockData.case1, MockData.case2, MockData.case3)
+            .collect(Collectors.toList());
+
+    private int generateId() {
+        int id = caseList.stream()
+                .map(BaseClass::getId)
+                .max(Comparator.comparing(Integer::intValue))
+                .orElse(1);
+        return ++id;
+    }
 
     @Override
     public <S extends Case> S save(S entity) {
+        if (Objects.isNull(entity.getId())) {
+            entity.setId(generateId());
+        }
+        if (existsById(entity.getId())) {
+            entity.setVersion(findById(entity.getId()).map(BaseClass::getVersion).orElse(0) + 1);
+        }
         caseList.add(entity);
         return entity;
     }

@@ -1,15 +1,13 @@
 package mu.yanesh.webservices.controller;
 
 import lombok.AllArgsConstructor;
+import mu.yanesh.webservices.exceptions.DetectiveNotFoundException;
 import mu.yanesh.webservices.models.Case;
 import mu.yanesh.webservices.models.Detective;
 import mu.yanesh.webservices.models.Status;
 import mu.yanesh.webservices.services.CaseService;
 import mu.yanesh.webservices.services.DetectiveService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,5 +44,26 @@ public class ControllerRest {
     @GetMapping("/detectives")
     public List<Detective> getAllDetective() {
         return detectiveService.getAll();
+    }
+
+    @PostMapping("/detective")
+    public Detective saveDetective(@RequestBody Detective detective) {
+        return detectiveService.save(detective);
+    }
+
+    @DeleteMapping("/detective/{id}")
+    public Boolean deleteDetective(@PathVariable int id) {
+        detectiveService.delete(id);
+        return true;
+    }
+
+    @PutMapping("/detective")
+    public Detective updateDetective(@RequestBody Detective detective) {
+        return detectiveService.save(detective);
+    }
+
+    @GetMapping("/detective/{id}")
+    public Detective getDetective(@PathVariable int id) {
+        return detectiveService.getById(id).orElseThrow(DetectiveNotFoundException::new);
     }
 }
