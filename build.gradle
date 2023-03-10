@@ -16,6 +16,10 @@ configurations {
 	jaxb
 }
 
+ext {
+	jacksonVersion = '2.13.3'
+}
+
 bootJar {
 	archiveBaseName = 'soap-vs-rest'
 	archiveVersion =  '0.1.0'
@@ -30,8 +34,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	implementation 'com.h2database:h2:2.1.214'
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
-	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3'
+
+	implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+	implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${jacksonVersion}"
+
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 
 	implementation 'wsdl4j:wsdl4j'
 	jaxb("org.glassfish.jaxb:jaxb-xjc")

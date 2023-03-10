@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/rest")
@@ -22,6 +24,11 @@ public class ControllerRest {
 
     @GetMapping("/cases")
     public List<Case> getAllCases() {
+        return caseService.getAll();
+    }
+
+    @GetMapping(value = "/cases", consumes = APPLICATION_XML_VALUE, produces = APPLICATION_XML_VALUE)
+    public List<Case> getAllCasesXML() {
         return caseService.getAll();
     }
 
