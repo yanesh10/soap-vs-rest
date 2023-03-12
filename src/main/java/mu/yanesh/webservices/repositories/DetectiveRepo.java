@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -17,8 +18,8 @@ import java.util.stream.Stream;
 @Repository
 public class DetectiveRepo implements CrudRepository<Detective, Integer> {
 
-    List<Detective> detectiveList = Stream.of(MockData.detective1, MockData.detective2, MockData.detective3, MockData.detective4)
-            .collect(Collectors.toList());
+    List<Detective> detectiveList = Collections.synchronizedList(Stream.of(MockData.detective1, MockData.detective2, MockData.detective3, MockData.detective4)
+            .collect(Collectors.toList()));
 
     private int generateId() {
         int id = detectiveList.stream()

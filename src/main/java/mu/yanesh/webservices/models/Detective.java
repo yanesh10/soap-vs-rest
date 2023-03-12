@@ -1,5 +1,7 @@
 package mu.yanesh.webservices.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,6 +13,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "detectives")
 public final class Detective extends BaseClass {
 
     private String firstName;

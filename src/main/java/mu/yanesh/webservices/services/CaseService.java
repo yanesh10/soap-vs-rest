@@ -4,24 +4,22 @@ import lombok.AllArgsConstructor;
 import mu.yanesh.webservices.models.Case;
 import mu.yanesh.webservices.models.Detective;
 import mu.yanesh.webservices.models.Status;
-import mu.yanesh.webservices.repositories.CaseRepo;
+import mu.yanesh.webservices.repositories.CaseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
 @Service
 @AllArgsConstructor
 public class CaseService implements BaseService<Case> {
 
-    private final CaseRepo caseRepo;
+    private final CaseRepository caseRepo;
 
     @Override
     public List<Case> getAll() {
-        return StreamSupport.stream(caseRepo.findAll().spliterator(), false)
-                .toList();
+        return caseRepo.findAll();
     }
 
     @Override
