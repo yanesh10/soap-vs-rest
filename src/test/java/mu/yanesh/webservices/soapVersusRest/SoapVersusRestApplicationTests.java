@@ -1,13 +1,10 @@
 package mu.yanesh.webservices.soapVersusRest;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/resources", glue = "mu.yanesh.webservices.soapVersusRest")
 class SoapVersusRestApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
 
 }

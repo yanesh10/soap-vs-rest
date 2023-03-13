@@ -3,8 +3,6 @@
            targetNamespace="http://spring.io/guides/gs-producing-web-service"
            elementFormDefault="qualified">
 
-<!--    <xs:include schemaLocation="models.xsd"/>-->
-
     <xs:complexType name="Base">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>

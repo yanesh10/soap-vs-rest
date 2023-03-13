@@ -21,7 +21,7 @@ public class SoapVersusRestApplication {
 
     @Bean
     @Profile("create-data")
-    public CommandLineRunner run(DetectiveRepository detectiveRepository, CaseRepository caseRepository) throws Exception {
+    public CommandLineRunner run(DetectiveRepository detectiveRepository, CaseRepository caseRepository) {
         return (String[] args) -> {
             detectiveRepository.saveAll(List.of(MockData.detective1,
                     MockData.detective2, MockData.detective3, MockData.detective4));
