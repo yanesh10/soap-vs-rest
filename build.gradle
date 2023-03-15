@@ -58,7 +58,7 @@ dependencies {
     testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
     testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
     testImplementation 'org.projectlombok:lombok'
-
+    testImplementation 'org.hamcrest:hamcrest:2.2'
 
 }
 
