@@ -108,7 +108,7 @@ public class CaseStepDefinition extends SpringIntegrationTest<Case> {
             String[] name = columns.get("leadDetective").split(SEPARATOR);
             Detective leadDetective = Detective.builder()
                     .id(3)
-                    .version(1)
+                    .version(0)
                     .firstName(name[0])
                     .lastName(name[1])
                     .rank(Rank.LIEUTENANT)
@@ -121,7 +121,7 @@ public class CaseStepDefinition extends SpringIntegrationTest<Case> {
                     .leadDetective(leadDetective)
                     .status(Status.valueOf(columns.get("status").toUpperCase()))
                     .detectiveList(getDetectiveList(columns.get("detectiveList")))
-                    .version(1)
+                    .version(0)
                     .build();
             expectedResult.add(actualValue);
         }

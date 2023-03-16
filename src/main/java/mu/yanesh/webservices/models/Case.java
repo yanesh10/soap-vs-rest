@@ -23,7 +23,8 @@ public final class Case extends BaseClass {
 
     private String description;
     private LocalDate date;
-    @OneToMany(mappedBy = "id")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "detectiveList")
     private List<Detective> detectiveList;
     @OneToOne
     @JoinColumn(name = "detectiveId")
