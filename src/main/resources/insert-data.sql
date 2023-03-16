@@ -1,6 +1,0 @@
---INSERT INTO DETECTIVES(first_name, last_name, rank, version) VALUES ('John', 'David', 2, 0);
---INSERT INTO DETECTIVES(first_name, last_name, rank, version) VALUES ('Lionel', 'Messi', 1, 0);
---INSERT INTO DETECTIVES(first_name, last_name, rank, version) VALUES ('Crist', 'Ron', 3, 0);
---INSERT INTO DETECTIVES(first_name, last_name, rank, version) VALUES ('David', 'Deck', 0, 0);
-------
---INSERT INTO CASES(date, description, lead_detective_id, status, version) values (PARSEDATETIME('04-01-2010', 'dd-MM-yyyy', 'en'), 'Description 1', 1, 0, 0);
