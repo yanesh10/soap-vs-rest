@@ -36,6 +36,14 @@ public class ControllerRest {
     public List<Detective> getAllDetectiveForCase(@PathVariable int caseId) {
         return caseService.getAllDetectiveByCase(caseId);
     }
+    @PutMapping("/cases/{caseId}")
+    public void saveDetectiveToCase(@PathVariable int caseId,@RequestBody Detective detective){
+        Case aCase = caseService.getById(caseId)
+                        .orElseThrow(IllegalArgumentException::new);
+        aCase.getDetectiveList().add(detective);
+
+        caseService.save(aCase);
+    }
 
     @GetMapping("/cases/{caseId}/lead")
     public Detective getLeadDetective(@PathVariable int caseId) {
