@@ -23,7 +23,7 @@ Feature: Test all cases service
     And Case status is OPEN
     Then There should be a total of 2 cases
     And Verify the following values
-    | caseId | date | leadDetective | status | description | detectiveList |
-    | 1      | 04/01/2010 | John David | OPEN | Description 1 | 1, 3       |
-    | 3      | 04/01/2018 | Crist Ron  | OPEN | Description 3 | 3, 4       |
+    | caseId | date       | leadDetective | leadDetectiveRank | status  | description   | detectiveList |
+    | 1      | 04/01/2010 | John David    | SERGEANT      | OPEN    | Description 1 | 1, 2          |
+    | 3      | 04/01/2018 | Crist Ron     | LIEUTENANT    | OPEN    | Description 3 | 3, 4          |
 

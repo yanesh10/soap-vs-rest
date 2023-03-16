@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DetectiveStepDefinition extends SpringIntegrationTest<Detective> {
 
     private final DetectiveRepository detectiveRepository;
-    private DetectiveService detectiveService;
     private Detective result;
 
     private List<Detective> resultList;
@@ -83,12 +82,6 @@ public class DetectiveStepDefinition extends SpringIntegrationTest<Detective> {
         Detective detective = getDetective(firstName, lastName)
                 .orElseThrow(DetectiveNotFoundException::new);
         detectiveService.delete(detective.getId());
-    }
-
-    private Optional<Detective> getDetective(String firstName, String lastName) {
-        List<Detective> list = detectiveService.getAll();
-        return list.stream().filter(d -> d.getFirstName().equals(firstName) && d.getLastName().equals(lastName))
-                .findFirst();
     }
 
     @Then("Check if detective {word} {word} still exist")
