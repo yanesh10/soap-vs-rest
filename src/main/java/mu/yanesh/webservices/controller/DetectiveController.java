@@ -6,6 +6,7 @@ import io.spring.guides.gs_producing_web_service.DetectiveServiceResponse;
 import lombok.AllArgsConstructor;
 import mu.yanesh.webservices.exceptions.DetectiveNotFoundException;
 import mu.yanesh.webservices.exceptions.MissingRequiredFieldException;
+import mu.yanesh.webservices.models.Constants;
 import mu.yanesh.webservices.models.Detective;
 import mu.yanesh.webservices.services.DetectiveService;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -23,11 +24,11 @@ public class DetectiveController {
 
     private final ObjectMapper objectMapper;
 
-    @SoapAction(value = "GetDetective")
+    @SoapAction(value = Constants.GET_DETECTIVE)
     @ResponsePayload
     public DetectiveServiceResponse getDetective(@RequestPayload DetectiveServiceRequest request) {
         if (request.getDetective().getId() <= 0) {
-            throw new MissingRequiredFieldException("id");
+            throw new MissingRequiredFieldException(Constants.ID);
         }
         DetectiveServiceResponse response = new DetectiveServiceResponse();
         Detective detective = detectiveService.getById(request.getDetective().getId()).orElseThrow(DetectiveNotFoundException::new);
@@ -35,7 +36,7 @@ public class DetectiveController {
         return response;
     }
 
-    @SoapAction(value = "SaveDetective")
+    @SoapAction(value = Constants.SAVE_DETECTIVE)
     @ResponsePayload
     public DetectiveServiceResponse saveDetective(@RequestPayload DetectiveServiceRequest request) {
         Objects.requireNonNull(request.getDetective());
@@ -45,14 +46,14 @@ public class DetectiveController {
         return response;
     }
 
-    @SoapAction(value = "DeleteDetective")
+    @SoapAction(value = Constants.DELETE_DETECTIVE)
     @ResponsePayload
-    public Boolean deleteDetective(@RequestPayload DetectiveServiceRequest request) {
+    public DetectiveServiceResponse deleteDetective(@RequestPayload DetectiveServiceRequest request) {
         if (request.getDetective().getId() <= 0) {
-            throw new MissingRequiredFieldException("id");
+            throw new MissingRequiredFieldException(Constants.ID);
         }
         detectiveService.delete(request.getDetective().getId());
-        return true;
+        return null;
     }
 
 
