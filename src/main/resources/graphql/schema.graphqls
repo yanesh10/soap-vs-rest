@@ -1,0 +1,42 @@
+scalar Date
+
+enum Rank {
+    OFFICER,
+    DETECTIVE,
+    SERGEANT,
+    LIEUTENANT
+}
+
+enum Status {
+    OPEN,
+    CLOSED
+}
+
+type Detective {
+    id: ID
+    version: Int
+    firstName: String
+    lastName: String
+    rank: Rank
+}
+
+type Case {
+    id: ID
+    version: Int
+    description: String
+    date: Date
+    status: Status
+    leadDetective: Detective
+    detectiveList: [Detective]
+}
+
+type Query {
+    getDetectives(count: Int!): [Detective]!
+    getDetectiveById(id: Int!): Detective!
+}
+
+type Mutation {
+    saveDetective(firstName: String!, lastName: String!, rank: Rank!): Detective!
+    deleteDetective(id: Int!): Boolean
+    updateDetective(firstName: String, lastName: String, rank: Rank): Detective!
+}

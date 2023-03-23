@@ -1,3 +1,7 @@
 spring:
   profiles:
     active: logger-debug, db, create-data
+  graphql:
+    graphiql:
+      # Define the properties to enable or disable GraphIQL
+      enabled: true
