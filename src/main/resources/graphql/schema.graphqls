@@ -38,5 +38,5 @@ type Query {
 type Mutation {
     saveDetective(firstName: String!, lastName: String!, rank: Rank!): Detective!
     deleteDetective(id: Int!): Boolean
-    updateDetective(firstName: String, lastName: String, rank: Rank): Detective!
+    updateDetective(id: Int!, firstName: String, lastName: String, rank: Rank): Detective!
 }
